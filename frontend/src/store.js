@@ -1,4 +1,4 @@
-// frontend/src/store.js - Updated with node deletion
+// frontend/src/store.js 
 import { create } from "zustand";
 import {
     addEdge,
@@ -25,11 +25,9 @@ export const useStore = create((set, get) => ({
             nodes: [...get().nodes, node]
         });
     },
-    // New: Delete node function
     deleteNode: (nodeId) => {
         set({
             nodes: get().nodes.filter(node => node.id !== nodeId),
-            // Also remove any edges connected to this node
             edges: get().edges.filter(edge => 
                 edge.source !== nodeId && edge.target !== nodeId
             )

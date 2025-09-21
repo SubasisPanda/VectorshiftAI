@@ -1,4 +1,4 @@
-// frontend/src/draggableNode.js - N8N-Style Square Compact Cards
+// frontend/src/draggableNode.js 
 import React, { useState } from 'react';
 
 export const DraggableNode = ({ type, label, icon, compact = false }) => {
@@ -63,7 +63,7 @@ export const DraggableNode = ({ type, label, icon, compact = false }) => {
           {icon}
         </div>
         
-        {/* Subtle glow effect on hover */}
+        {/*  glow effect  */}
         {isHovered && (
           <div style={{
             position: 'absolute',
@@ -76,7 +76,6 @@ export const DraggableNode = ({ type, label, icon, compact = false }) => {
     );
   }
 
-  // Fallback to original card design for non-compact mode
   return (
     <div
       onDragStart={(event) => onDragStart(event, type)}

@@ -1,9 +1,8 @@
-// frontend/src/components/base/BaseNode.js - Added hover delete button
+// frontend/src/components/base/BaseNode.js 
 import React, { useState } from 'react';
 import { Handle, Position } from 'reactflow';
 import { useStore } from '../../store';
 
-// Premium Delete Icon
 const DeleteIcon = () => (
   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
     <path d="M18 6L6 18M6 6l12 12"/>
@@ -43,7 +42,6 @@ export const BaseNode = ({
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Premium Delete Button (appears on hover) */}
       {isHovered && (
         <button
           onClick={handleDelete}
@@ -79,7 +77,7 @@ export const BaseNode = ({
         </button>
       )}
 
-      {/* Dynamic Input Handles */}
+      {/*  Input Handles */}
       {inputs.map((input, index) => (
         <Handle 
           key={input.id} 
@@ -116,7 +114,7 @@ export const BaseNode = ({
         {children}
       </div>
       
-      {/* Dynamic Output Handles */}
+      {/*  Output Handles */}
       {outputs.map((output, index) => (
         <Handle 
           key={output.id} 
@@ -133,7 +131,7 @@ export const BaseNode = ({
         />
       ))}
 
-      {/* CSS for animations */}
+      {/*  animations */}
       <style jsx>{`
         @keyframes fadeInScale {
           0% {

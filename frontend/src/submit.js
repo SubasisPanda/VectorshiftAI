@@ -59,7 +59,7 @@ export const SubmitButton = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        timeout: 10000, // 10 seconds timeout
+        timeout: 10000, 
       });
 
       const result = response.data;
@@ -68,7 +68,7 @@ export const SubmitButton = () => {
       // Dismiss loading toast
       toast.dismiss(loadingToast);
 
-      // 🎯 ASSESSMENT REQUIREMENT: Create alert as specified
+      //  Create alert as specified
       const alertMessage = 
         `Pipeline Analysis Results:\n\n` +
         `Number of Nodes: ${result.num_nodes}\n` +
@@ -77,7 +77,6 @@ export const SubmitButton = () => {
       
       alert(alertMessage);
 
-      // 🎨 BONUS: Beautiful notifications for enhanced UX
       const dagStatus = result.is_dag ? '✅ Valid DAG' : '❌ Contains Cycles';
       const complexityLevel = result.complexity_analysis?.complexity_level || 'Unknown';
       
@@ -138,7 +137,7 @@ export const SubmitButton = () => {
         }, 3000);
       }
 
-      // Log detailed results for debugging
+      // Log detailed results 
       console.log('Pipeline analysis results:', result);
 
     } catch (error) {
@@ -163,7 +162,7 @@ export const SubmitButton = () => {
         errorDetails = error.message || 'Please check your connection and try again.';
       }
 
-      // Show alert for error as well (consistent with success)
+      // Show alert for error as well 
       alert(`${errorMessage}\n${errorDetails}`);
 
       toast.error(
@@ -191,8 +190,7 @@ export const SubmitButton = () => {
       alignItems: 'center',
       gap: '12px'
     }}>
-          {/* Main Submit Button */}
-          {/* sans-serif */}
+          
       <button
         onClick={handleSubmit}
         disabled={isLoading}
@@ -282,7 +280,7 @@ export const SubmitButton = () => {
         </div>
       )}
 
-      {/* Quick Results Summary */}
+      {/*  Results Summary */}
       {lastResult && (
         <div style={{
           background: 'rgba(0, 0, 0, 0.2)',
@@ -309,7 +307,7 @@ export const SubmitButton = () => {
         </div>
       )}
 
-      {/* CSS for spinner animation */}
+      {/* spinner animation */}
       <style jsx>{`
         @keyframes spin {
           0% { transform: rotate(0deg); }

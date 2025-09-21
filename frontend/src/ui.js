@@ -1,4 +1,4 @@
-// frontend/src/ui.js - Fixed positioning issue
+// frontend/src/ui.js 
 import React, { useState, useRef, useCallback, useEffect } from 'react';
 import ReactFlow, { Controls, Background, MiniMap } from 'reactflow';
 import { useStore } from './store';
@@ -8,20 +8,19 @@ import { getAllNodeTypes } from './config/nodeConfigs';
 
 import 'reactflow/dist/style.css';
 
-// Premium Delete Icon
 const DeleteIcon = () => (
   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
     <path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6h14zM10 11v6M14 11v6"/>
   </svg>
 );
 
-// Generate nodeTypes dynamically
+// Generate nodeTypes 
 const nodeTypes = {};
 getAllNodeTypes().forEach(type => {
   nodeTypes[type] = (props) => <UniversalNode {...props} type={type} />;
 });
 
-const gridSize = 15; // Smaller grid like competitors
+const gridSize = 15; 
 const proOptions = { hideAttribution: true };
 
 const selector = (state) => ({
@@ -55,7 +54,7 @@ export const PipelineUI = () => {
     deleteNode
   } = useStore(selector, shallow);
 
-  // Loading animation effect
+  // Loading animation 
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoaded(true);
@@ -204,7 +203,7 @@ export const PipelineUI = () => {
       tabIndex={0}
       onKeyDown={onKeyDown}
     >
-      {/* Professional Context Menu */}
+      {/*  Context Menu */}
       {contextMenu && (
         <div
           style={{
@@ -252,7 +251,7 @@ export const PipelineUI = () => {
         </div>
       )}
 
-      {/* Enhanced Selection Indicators */}
+      {/*  Selection Indicators */}
       {selectedEdge && !contextMenu && (
         <div style={{
           position: 'absolute',
@@ -302,7 +301,6 @@ export const PipelineUI = () => {
             ...node.style,
             outline: selectedNodes.includes(node.id) ? '2px solid #60a5fa' : 'none',
             outlineOffset: '2px'
-            // REMOVED: opacity, transform, transition - these were causing positioning issues
           }
         }))}
         edges={edges.map(edge => {
@@ -352,7 +350,7 @@ export const PipelineUI = () => {
           }
         }}
       >
-        {/* Enhanced Background with better visibility */}
+        {/*  Background visibility */}
         <Background 
           color="rgba(139, 92, 246, 0.25)" 
           gap={gridSize}
@@ -363,7 +361,7 @@ export const PipelineUI = () => {
           }}
         />
         
-        {/* Premium Controls */}
+        {/*  Controls */}
         <Controls 
           style={{
             background: 'rgba(8, 8, 16, 0.9)',
@@ -376,7 +374,7 @@ export const PipelineUI = () => {
           }}
         />
         
-        {/* Premium MiniMap */}
+        {/*  MiniMap */}
         <MiniMap
           style={{
             background: 'rgba(8, 8, 16, 0.9)',

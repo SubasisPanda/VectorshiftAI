@@ -1,9 +1,9 @@
-// frontend/src/toolbar.js - Complete Fixed Version with All Icons
+// frontend/src/toolbar.js 
 import React, { useState, useEffect } from 'react';
 import { DraggableNode } from './draggableNode';
 import { getAllNodeTypes, getNodeConfig } from './config/nodeConfigs';
 
-// Professional SVG Icons (clean and minimal)
+//  SVG Icons 
 const InputIcon = () => (
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
         <path d="M9 12l2 2 4-4M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9z" />
@@ -67,7 +67,7 @@ const WebhookIcon = () => (
     </svg>
 );
 
-// Icon mapping - THIS WAS MISSING!
+// Icon mapping 
 const iconMap = {
     customInput: <InputIcon />,
     customOutput: <OutputIcon />,
@@ -122,7 +122,6 @@ export const PipelineToolbar = () => {
                 gap: '32px'
             }}>
 
-                {/* Logo & Title - Enhanced */}
                 <div style={{ 
                     display: 'flex', 
                     alignItems: 'center', 
@@ -163,7 +162,7 @@ export const PipelineToolbar = () => {
                     </div>
                 </div>
 
-                {/* Core Components - Animated */}
+                {/* Core Components  */}
                 <div style={{ 
                     display: 'flex', 
                     alignItems: 'center', 
@@ -199,7 +198,7 @@ export const PipelineToolbar = () => {
                     ))}
                 </div>
 
-                {/* Advanced Components - Animated */}
+                {/* Advanced Components  */}
                 <div style={{ 
                     display: 'flex', 
                     alignItems: 'center', 

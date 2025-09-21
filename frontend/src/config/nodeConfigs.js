@@ -1,7 +1,7 @@
 // frontend/src/config/nodeConfigs.js
 import React from 'react';
 
-// Simple icon placeholders since we're not using heroicons
+// Simple icon placeholders , not using heroicons
 const ArrowRightIcon = () => <div style={{ width: 16, height: 16, background: '#60a5fa', borderRadius: '50%' }} />;
 const CpuChipIcon = () => <div style={{ width: 16, height: 16, background: '#a855f7', borderRadius: '4px' }} />;
 const ArrowLeftIcon = () => <div style={{ width: 16, height: 16, background: '#10b981', borderRadius: '50%' }} />;

@@ -10,7 +10,7 @@ export const UniversalNode = ({ id, data, type }) => {
   const config = getNodeConfig(type);
   const [localData, setLocalData] = useState(data || {});
 
-  // Special handling for SmartTextNode
+  //  handling for SmartTextNode
   if (type === 'text') {
     return <SmartTextNode id={id} data={data} />;
   }
@@ -185,8 +185,8 @@ export const UniversalNode = ({ id, data, type }) => {
             border: '1px dashed rgba(255, 255, 255, 0.2)'
           }}>
             {config.title === 'LLM' 
-              ? '🤖 Large Language Model processor' 
-              : '⚙️ No configuration needed'
+              ? ' Large Language Model processor' 
+              : ' No configuration needed'
             }
           </div>
         )}

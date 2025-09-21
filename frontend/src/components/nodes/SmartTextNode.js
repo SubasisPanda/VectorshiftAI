@@ -35,12 +35,12 @@ export const SmartTextNode = ({ id, data }) => {
     updateNodeField(id, 'variables', newVariables);
   }, [text, extractVariables, updateNodeField, id]);
 
-  // Auto-resize functionality
+  // Auto-resize 
   useEffect(() => {
     const textarea = textareaRef.current;
     if (!textarea) return;
 
-    // Reset height to calculate scrollHeight properly
+    // Reset height to calculate scrollHeight 
     textarea.style.height = 'auto';
     
     // Calculate new dimensions
@@ -51,7 +51,7 @@ export const SmartTextNode = ({ id, data }) => {
     
     setDimensions({
       width: newWidth,
-      height: newHeight + 100 // Add padding for header and variables
+      height: newHeight + 100 
     });
   }, [text]);
 
@@ -73,7 +73,7 @@ export const SmartTextNode = ({ id, data }) => {
         overflow: 'visible'
       }}
     >
-      {/* Dynamic Input Handles for Variables */}
+      {/*  Input Handles for Variables */}
       {variables.map((variable, index) => (
         <React.Fragment key={`${variable}-${index}`}>
           <Handle
