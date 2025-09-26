@@ -1,7 +1,8 @@
-/* frontend/src/index.css 
-@import './styles/globals.css';
+/* frontend/src/index.css - Premium Dark Theme (TailwindCSS-free) */
 
-/*  dark theme base  */
+/* Remove this problematic line: @import './styles/globals.css'; */
+
+/* Premium dark theme base */
 html, body, #root {
   margin: 0;
   padding: 0;
@@ -16,6 +17,7 @@ html, body, #root {
   overflow-x: hidden;
 }
 
+/* Ensure the root container takes full height */
 #root {
   min-height: 100vh;
   display: flex;
@@ -27,7 +29,7 @@ code {
     monospace;
 }
 
-/*  ReactFlow  */
+/* Enhanced ReactFlow styles */
 .react-flow__attribution {
   display: none !important;
 }
@@ -59,16 +61,18 @@ code {
   border: 1px solid rgba(139, 92, 246, 0.2) !important;
 }
 
-/*  connection line */
+/* Enhanced connection line */
 .react-flow__connection-line {
   stroke: #60a5fa !important;
   stroke-width: 3 !important;
   filter: drop-shadow(0 0 8px rgba(96, 165, 250, 0.5)) !important;
 }
 
-/*  animations */
+/* Smooth animations */
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 /* Loading animation keyframes */
@@ -94,15 +98,12 @@ code {
   }
 }
 
-* {
-  margin: 0;
-  padding: 0;
-}
-
+/* Ensure smooth scrolling */
 html {
   scroll-behavior: smooth;
 }
 
+/* Premium scrollbar styling */
 ::-webkit-scrollbar {
   width: 8px;
 }
