@@ -4,7 +4,7 @@ import { Toaster } from 'react-hot-toast';
 import { PipelineToolbar } from './toolbar';
 import { PipelineUI } from './ui';
 import { SubmitButton } from './submit';
-import './styles/globals.css';
+import './styles/global.css';
 
 function App() {
   return (
