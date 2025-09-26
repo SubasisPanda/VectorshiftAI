@@ -12,10 +12,13 @@ app = FastAPI(
     version="1.0.0"
 )
 
-# Enhanced CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://127.0.0.1:3000"],
+    allow_origins=["http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "https://*.vercel.app",
+    "https://*.netlify.app",
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -189,7 +192,7 @@ def read_root():
         "status": "healthy",
         "service": "VectorShift Pipeline API",
         "version": "1.0.0",
-        "message": "🚀 Enhanced DAG validation service running!"
+        "message": " Enhanced DAG validation service running!"
     }
 
 @app.post("/pipelines/parse")
