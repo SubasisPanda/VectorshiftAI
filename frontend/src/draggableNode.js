@@ -11,7 +11,6 @@ export const DraggableNode = ({ type, label, icon, compact = false }) => {
     event.dataTransfer.effectAllowed = 'move';
   };
 
-  // Color mapping for different node types
   const colorMap = {
     customInput: { bg: 'rgba(59, 130, 246, 0.1)', border: 'rgba(59, 130, 246, 0.3)', hover: 'rgba(59, 130, 246, 0.2)' },
     customOutput: { bg: 'rgba(16, 185, 129, 0.1)', border: 'rgba(16, 185, 129, 0.3)', hover: 'rgba(16, 185, 129, 0.2)' },
