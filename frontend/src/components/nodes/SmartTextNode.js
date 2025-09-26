@@ -30,7 +30,6 @@ export const SmartTextNode = ({ id, data }) => {
     const newVariables = extractVariables(text);
     setVariables(newVariables);
     
-    // Update store
     updateNodeField(id, 'text', text);
     updateNodeField(id, 'variables', newVariables);
   }, [text, extractVariables, updateNodeField, id]);
