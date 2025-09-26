@@ -109,7 +109,6 @@ export const BaseNode = ({
         </h3>
       </div>
       
-      {/* Node Content */}
       <div>
         {children}
       </div>
