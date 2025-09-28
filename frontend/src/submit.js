@@ -26,7 +26,7 @@ export const SubmitButton = () => {
   const handleSubmit = async () => {
     // Validation checks
     if (nodes.length === 0) {
-      toast.error('🚨 Please add some nodes to your pipeline first!', {
+      toast.error(' Please add some nodes to your pipeline first!', {
         duration: 4000,
         style: {
           background: 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)',
@@ -40,7 +40,7 @@ export const SubmitButton = () => {
     setIsLoading(true);
     
     // Show loading toast
-    const loadingToast = toast.loading('🔄 Analyzing your pipeline architecture...', {
+    const loadingToast = toast.loading(' Analyzing your pipeline architecture...', {
       style: {
         background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)',
         color: 'white',
@@ -66,10 +66,10 @@ export const SubmitButton = () => {
         }))
       };
 
-      console.log('🚀 Sending to:', `${API_BASE_URL}/pipelines/parse`);
-      console.log('📊 Pipeline data:', pipelineData);
+      console.log(' Sending to:', `${API_BASE_URL}/pipelines/parse`);
+      console.log(' Pipeline data:', pipelineData);
 
-      // Send to backend - UPDATED URL
+      // Send to backend - UPDATED URL connected
       const response = await axios.post(`${API_BASE_URL}/pipelines/parse`, pipelineData, {
         headers: {
           'Content-Type': 'application/json',
@@ -95,9 +95,9 @@ export const SubmitButton = () => {
       const dagStatus = result.is_dag ? '✅ Valid DAG' : '❌ Contains Cycles';
       
       toast.success(
-        `🎉 Pipeline Analysis Complete!\n\n` +
-        `📊 Nodes: ${result.num_nodes}\n` +
-        `🔗 Connections: ${result.num_edges}\n` +
+        ` Pipeline Analysis Complete!\n\n` +
+        ` Nodes: ${result.num_nodes}\n` +
+        ` Connections: ${result.num_edges}\n` +
         `${dagStatus}`,
         { 
           duration: 8000,
@@ -161,7 +161,7 @@ export const SubmitButton = () => {
       toast.error(
         `${errorMessage}\n${errorDetails}`,
         { 
-          duration: 6000,
+          duration: 15000,
           style: {
             background: 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)',
             color: 'white',
@@ -191,7 +191,7 @@ export const SubmitButton = () => {
         textAlign: 'center',
         marginBottom: '8px'
       }}>
-        🔗 Connected to: {API_BASE_URL.replace('https://', '').replace('http://', '')}
+        Analyze your pipeline here
       </div>
           
       <button
