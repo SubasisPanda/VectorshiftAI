@@ -1,4 +1,4 @@
-// frontend/src/submit.js
+// frontend/src/submit.js 
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useStore } from './store';
@@ -8,6 +8,20 @@ export const SubmitButton = () => {
   const { nodes, edges } = useStore();
   const [isLoading, setIsLoading] = useState(false);
   const [lastResult, setLastResult] = useState(null);
+
+  const getApiUrl = () => {
+    if (process.env.REACT_APP_API_URL) {
+      return process.env.REACT_APP_API_URL;
+    }
+    
+    if (process.env.NODE_ENV === 'development') {
+      return 'http://127.0.0.1:8000';
+    }
+    
+    return 'https://vectorshiftai.onrender.com';
+  };
+
+  const API_BASE_URL = getApiUrl();
 
   const handleSubmit = async () => {
     // Validation checks
@@ -26,7 +40,7 @@ export const SubmitButton = () => {
     setIsLoading(true);
     
     // Show loading toast
-    const loadingToast = toast.loading(' Analyzing your pipeline architecture...', {
+    const loadingToast = toast.loading('🔄 Analyzing your pipeline architecture...', {
       style: {
         background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)',
         color: 'white',
@@ -52,14 +66,15 @@ export const SubmitButton = () => {
         }))
       };
 
-      console.log('Sending pipeline data:', pipelineData);
+      console.log('🚀 Sending to:', `${API_BASE_URL}/pipelines/parse`);
+      console.log('📊 Pipeline data:', pipelineData);
 
-      // Send to backend
-      const response = await axios.post('http://127.0.0.1:8000/pipelines/parse', pipelineData, {
+      // Send to backend - UPDATED URL
+      const response = await axios.post(`${API_BASE_URL}/pipelines/parse`, pipelineData, {
         headers: {
           'Content-Type': 'application/json',
         },
-        timeout: 10000, 
+        timeout: 15000, // Increased timeout for production
       });
 
       const result = response.data;
@@ -68,7 +83,7 @@ export const SubmitButton = () => {
       // Dismiss loading toast
       toast.dismiss(loadingToast);
 
-      //  Create alert as specified
+      // Create alert as specified
       const alertMessage = 
         `Pipeline Analysis Results:\n\n` +
         `Number of Nodes: ${result.num_nodes}\n` +
@@ -78,15 +93,12 @@ export const SubmitButton = () => {
       alert(alertMessage);
 
       const dagStatus = result.is_dag ? '✅ Valid DAG' : '❌ Contains Cycles';
-      const complexityLevel = result.complexity_analysis?.complexity_level || 'Unknown';
       
       toast.success(
-        ` Pipeline Analysis Complete!\n\n` +
-        ` Nodes: ${result.num_nodes}\n` +
-        ` Connections: ${result.num_edges}\n` +
-        `${dagStatus}\n` +
-        ` Complexity: ${complexityLevel}\n` +
-        ` Est. Time: ${result.performance?.estimated_execution_time_seconds || 'N/A'}s`,
+        `🎉 Pipeline Analysis Complete!\n\n` +
+        `📊 Nodes: ${result.num_nodes}\n` +
+        `🔗 Connections: ${result.num_edges}\n` +
+        `${dagStatus}`,
         { 
           duration: 8000,
           style: {
@@ -118,30 +130,11 @@ export const SubmitButton = () => {
         }, 1500);
       }
 
-      // Show recommendations if available
-      if (result.structure_validation?.recommendations?.length > 0) {
-        setTimeout(() => {
-          toast(
-            `💡 Recommendations:\n${result.structure_validation.recommendations.slice(0, 2).join('\n')}`,
-            { 
-              duration: 6000,
-              style: {
-                background: 'linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)',
-                color: 'white',
-                fontWeight: '600',
-                fontSize: '13px',
-                maxWidth: '450px',
-              },
-            }
-          );
-        }, 3000);
-      }
-
       // Log detailed results 
-      console.log('Pipeline analysis results:', result);
+      console.log('✅ Pipeline analysis results:', result);
 
     } catch (error) {
-      console.error('Pipeline analysis failed:', error);
+      console.error('❌ Pipeline analysis failed:', error);
       
       toast.dismiss(loadingToast);
 
@@ -151,7 +144,7 @@ export const SubmitButton = () => {
 
       if (error.code === 'ECONNREFUSED' || error.message.includes('Network Error')) {
         errorMessage = '🔌 Cannot connect to backend server';
-        errorDetails = 'Make sure the Python backend is running on port 8000';
+        errorDetails = `Backend URL: ${API_BASE_URL}\nPlease check if the backend is running.`;
       } else if (error.response) {
         errorMessage = `❌ Server Error (${error.response.status})`;
         errorDetails = error.response.data?.detail?.message || error.response.data?.detail || 'Unknown server error';
@@ -190,13 +183,23 @@ export const SubmitButton = () => {
       alignItems: 'center',
       gap: '12px'
     }}>
+      
+      {/* API Connection Status */}
+      <div style={{
+        fontSize: '11px',
+        color: 'rgba(255, 255, 255, 0.6)',
+        textAlign: 'center',
+        marginBottom: '8px'
+      }}>
+        🔗 Connected to: {API_BASE_URL.replace('https://', '').replace('http://', '')}
+      </div>
           
       <button
         onClick={handleSubmit}
         disabled={isLoading}
         style={{
           background: isLoading 
-            ? 'linear-gradient(135deg, #0055ffff 0%, #000000ff 100%)' 
+            ? 'linear-gradient(135deg, #6b7280 0%, #4b5563 100%)' 
             : 'linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%)',
           border: '1px solid rgba(255, 255, 255, 0.2)',
           borderRadius: '12px',
@@ -264,7 +267,7 @@ export const SubmitButton = () => {
             fontSize: '12px',
             fontWeight: '600'
           }}>
-             {nodes.length} Nodes
+            📊 {nodes.length} Nodes
           </div>
           <div style={{
             background: 'rgba(16, 185, 129, 0.1)',
@@ -275,12 +278,12 @@ export const SubmitButton = () => {
             fontSize: '12px',
             fontWeight: '600'
           }}>
-             {edges.length} Connections
+            🔗 {edges.length} Connections
           </div>
         </div>
       )}
 
-      {/*  Results Summary */}
+      {/* Last Results Summary */}
       {lastResult && (
         <div style={{
           background: 'rgba(0, 0, 0, 0.2)',
@@ -307,7 +310,7 @@ export const SubmitButton = () => {
         </div>
       )}
 
-      {/* spinner animation */}
+      {/* CSS for spinner animation */}
       <style jsx>{`
         @keyframes spin {
           0% { transform: rotate(0deg); }
