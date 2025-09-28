@@ -26,7 +26,7 @@ export const SubmitButton = () => {
     setIsLoading(true);
     
     // Show loading toast
-    const loadingToast = toast.loading('🔍 Analyzing your pipeline architecture...', {
+    const loadingToast = toast.loading(' Analyzing your pipeline architecture...', {
       style: {
         background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)',
         color: 'white',
@@ -81,12 +81,12 @@ export const SubmitButton = () => {
       const complexityLevel = result.complexity_analysis?.complexity_level || 'Unknown';
       
       toast.success(
-        `🎉 Pipeline Analysis Complete!\n\n` +
-        `📊 Nodes: ${result.num_nodes}\n` +
-        `🔗 Connections: ${result.num_edges}\n` +
+        ` Pipeline Analysis Complete!\n\n` +
+        ` Nodes: ${result.num_nodes}\n` +
+        ` Connections: ${result.num_edges}\n` +
         `${dagStatus}\n` +
-        `📈 Complexity: ${complexityLevel}\n` +
-        `⚡ Est. Time: ${result.performance?.estimated_execution_time_seconds || 'N/A'}s`,
+        ` Complexity: ${complexityLevel}\n` +
+        ` Est. Time: ${result.performance?.estimated_execution_time_seconds || 'N/A'}s`,
         { 
           duration: 8000,
           style: {
