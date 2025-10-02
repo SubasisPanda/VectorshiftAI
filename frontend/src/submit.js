@@ -92,7 +92,7 @@ export const SubmitButton = () => {
       
       alert(alertMessage);
 
-      const dagStatus = result.is_dag ? '✅ Valid DAG' : '❌ Contains Cycles';
+      const dagStatus = result.is_dag ? ' Valid DAG' : ' Contains Cycles';
       
       toast.success(
         ` Pipeline Analysis Complete!\n\n` +
@@ -115,7 +115,7 @@ export const SubmitButton = () => {
       if (result.cycle_info && result.cycle_info.length > 0) {
         setTimeout(() => {
           toast.error(
-            `⚠️ Cycle Detection:\n${result.cycle_info.join('\n')}`,
+            ` Cycle Detection:\n${result.cycle_info.join('\n')}`,
             { 
               duration: 6000,
               style: {
@@ -134,19 +134,19 @@ export const SubmitButton = () => {
       console.log('✅ Pipeline analysis results:', result);
 
     } catch (error) {
-      console.error('❌ Pipeline analysis failed:', error);
+      console.error(' Pipeline analysis failed:', error);
       
       toast.dismiss(loadingToast);
 
       // Determine error type and show appropriate message
-      let errorMessage = '❌ Pipeline analysis failed';
+      let errorMessage = ' Pipeline analysis failed';
       let errorDetails = '';
 
       if (error.code === 'ECONNREFUSED' || error.message.includes('Network Error')) {
         errorMessage = '🔌 Cannot connect to backend server';
         errorDetails = `Backend URL: ${API_BASE_URL}\nPlease check if the backend is running.`;
       } else if (error.response) {
-        errorMessage = `❌ Server Error (${error.response.status})`;
+        errorMessage = ` Server Error (${error.response.status})`;
         errorDetails = error.response.data?.detail?.message || error.response.data?.detail || 'Unknown server error';
       } else if (error.code === 'ECONNABORTED') {
         errorMessage = '⏱️ Request timeout';
@@ -267,7 +267,7 @@ export const SubmitButton = () => {
             fontSize: '12px',
             fontWeight: '600'
           }}>
-            📊 {nodes.length} Nodes
+             {nodes.length} Nodes
           </div>
           <div style={{
             background: 'rgba(16, 185, 129, 0.1)',
@@ -278,7 +278,7 @@ export const SubmitButton = () => {
             fontSize: '12px',
             fontWeight: '600'
           }}>
-            🔗 {edges.length} Connections
+             {edges.length} Connections
           </div>
         </div>
       )}
@@ -305,7 +305,7 @@ export const SubmitButton = () => {
             color: lastResult.is_dag ? '#34d399' : '#f87171',
             fontSize: '11px'
           }}>
-            {lastResult.is_dag ? '✅ Valid Pipeline' : '❌ Contains Cycles'}
+            {lastResult.is_dag ? ' Valid Pipeline' : ' Contains Cycles'}
           </div>
         </div>
       )}
