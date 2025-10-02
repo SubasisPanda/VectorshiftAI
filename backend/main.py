@@ -11,13 +11,12 @@ app = FastAPI(
     description="Advanced pipeline analysis with bulletproof DAG validation",
     version="1.0.0"
 )
-# "https://*.vercel.app",
-#     "https://*.netlify.app",
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:3000",
     "http://127.0.0.1:3000",
-    "https://vectorshiftai-auto-subasispanda.vercel.app/",
+    "https://vectorshiftai-auto-subasispanda.vercel.app",
     ],
     allow_credentials=True,
     allow_methods=["*"],
